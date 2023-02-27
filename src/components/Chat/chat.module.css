@@ -1,0 +1,31 @@
+.title {
+    color: #ffffff;
+    text-align: center;
+    font-size: 64px;
+}
+
+.chat {
+    height: calc(100vh - 281px);
+    margin-top: 3rem;
+    overflow: auto;
+}
+
+.button{
+    color: #ececf1;
+    padding: 0.5em;
+    font-size: 1.5em;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+}
+
+.input {
+    width: 100%;
+    max-width: 555px;
+    background-color: #40414F;
+    border: none;
+    color: #ececf1;
+    font-size: 1em;
+    padding: 1em;
+    border-radius: 5px;
+}

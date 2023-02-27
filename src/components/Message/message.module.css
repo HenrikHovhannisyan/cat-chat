@@ -1,0 +1,14 @@
+.message {
+    padding: 2rem 0;
+    color: #d1d5db;
+}
+
+.avatar {
+    width: 30px;
+    margin-right: 15px;
+    border-radius: 5px;
+}
+
+.cat {
+    background-color: #444654;
+}
