@@ -5,9 +5,15 @@
 }
 
 .chat {
-    height: calc(100vh - 281px);
+    height: calc(100vh - 175px);
     padding-top: 3rem;
     overflow: auto;
+}
+
+.input_container {
+    display: flex;
+    justify-content: center;
+    padding: 15px 10px;
 }
 
 .button {

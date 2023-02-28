@@ -58,7 +58,7 @@ const Chat = () => {
           return <Message key={i.id} type={i.type} message={i.message} />;
         })}
       </div>
-      <div className="container pt-5 d-flex justify-content-center">
+      <div className={Styles.input_container}>
         <input
           className={Styles.input}
           type="text"
