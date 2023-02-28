@@ -6,7 +6,6 @@
 
 .chat {
     height: calc(100vh - 175px);
-    padding-top: 3rem;
     overflow: auto;
 }
 
