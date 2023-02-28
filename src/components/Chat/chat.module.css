@@ -8,29 +8,3 @@
     height: calc(100vh - 175px);
     overflow: auto;
 }
-
-.input_container {
-    display: flex;
-    justify-content: center;
-    padding: 15px 10px;
-}
-
-.button {
-    color: #ececf1;
-    padding: 0.5em;
-    font-size: 1.5em;
-    cursor: pointer;
-    background: transparent;
-    border: none;
-}
-
-.input {
-    width: 100%;
-    max-width: 555px;
-    background-color: #40414F;
-    border: none;
-    color: #ececf1;
-    font-size: 1em;
-    padding: 1em;
-    border-radius: 5px;
-}

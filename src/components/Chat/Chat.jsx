@@ -1,5 +1,6 @@
 import React, { memo, useState } from "react";
 import Message from "../Message/Message";
+import Send from "../Send/Send";
 import Styles from "./chat.module.css";
 
 const Chat = () => {
@@ -58,20 +59,7 @@ const Chat = () => {
           return <Message key={i.id} type={i.type} message={i.message} />;
         })}
       </div>
-      <div className={Styles.input_container}>
-        <input
-          className={Styles.input}
-          type="text"
-          name="message"
-          value={message}
-          onChange={changeMessage}
-          onKeyDown={changeMessage}
-          placeholder="Write Message"
-        />
-        <button className={Styles.button} onClick={() => sendMessage()}>
-          <i className="fas fa-paper-plane"></i>
-        </button>
-      </div>
+      <Send value={message} change={changeMessage} send={sendMessage} />
     </div>
   );
 };
