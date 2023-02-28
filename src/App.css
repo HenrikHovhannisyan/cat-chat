@@ -3,6 +3,10 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+#root {
+    height: 100vh;
+}
+
 p {
     margin: 0;
 }

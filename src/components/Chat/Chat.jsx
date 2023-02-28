@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { memo, useState } from "react";
 import Message from "../Message/Message";
 import Styles from "./chat.module.css";
 
@@ -11,23 +11,42 @@ const Chat = () => {
       message: "Meow, meow meow meow, meow meow?",
     },
   ]);
-  let meow = ["Meow"];
+
+  const messageRandom = () => {
+    let randomNum = (num) => Math.floor(Math.random() * num);
+    let symbols = [".", "!", "?"];
+    let meow = [];
+    for (let i = 0; i <= randomNum(10); i++) {
+      meow.push("meow");
+    }
+
+    return `${meow.join(" ")}${symbols[randomNum(2)]}`;
+  };
 
   const changeMessage = (e) => {
     setMessage(e.target.value);
+    if (e.key === "Enter") {
+      sendMessage();
+    }
   };
 
   const sendMessage = () => {
-    setChat((prevState) => [
-      ...prevState,
-      { id: Math.random(), type: "user", message },
-    ]);
-    setTimeout(() => {
+    if (message) {
       setChat((prevState) => [
         ...prevState,
-        { id: Math.random(), type: "cat", message: meow },
+        { id: Math.random(), type: "user", message },
       ]);
-    }, 1000);
+      setTimeout(() => {
+        setChat((prevState) => [
+          ...prevState,
+          {
+            id: Math.random(),
+            type: "cat",
+            message: messageRandom(),
+          },
+        ]);
+      }, 500);
+    }
     setMessage("");
   };
 
@@ -39,13 +58,14 @@ const Chat = () => {
           return <Message key={i.id} type={i.type} message={i.message} />;
         })}
       </div>
-      <div className="container mt-5 mb-5 d-flex justify-content-center">
+      <div className="container pt-5 d-flex justify-content-center">
         <input
           className={Styles.input}
           type="text"
           name="message"
           value={message}
           onChange={changeMessage}
+          onKeyDown={changeMessage}
           placeholder="Write Message"
         />
         <button className={Styles.button} onClick={() => sendMessage()}>
@@ -56,4 +76,4 @@ const Chat = () => {
   );
 };
 
-export default Chat;
+export default memo(Chat);

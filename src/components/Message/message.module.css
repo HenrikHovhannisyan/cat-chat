@@ -1,6 +1,9 @@
 .message {
-    padding: 2rem 0;
     color: #d1d5db;
+}
+
+.test {
+    width: max-content;
 }
 
 .avatar {
@@ -11,4 +14,35 @@
 
 .cat {
     background-color: #444654;
+}
+
+.cat_message::first-letter {
+    text-transform: uppercase;
+}
+
+.cat_message {
+    overflow: hidden;
+    /* border-right: .15em solid orange; */
+    white-space: nowrap;
+    animation: typing 1s steps(20, end) forwards, blinking .8s infinite;
+}
+
+@keyframes typing {
+    from {
+        width: 0
+    }
+
+    to {
+        width: 100%
+    }
+}
+
+@keyframes blinking {
+    from {
+        border-color: transparent
+    }
+
+    to {
+        border-color: orange;
+    }
 }
