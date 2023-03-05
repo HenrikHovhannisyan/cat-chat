@@ -2,27 +2,12 @@ import React, { memo, useState } from "react";
 import Message from "../Message/Message";
 import Send from "../Send/Send";
 import Styles from "./chat.module.css";
+import defaultChatvalues from "../../helpers/chatInfo";
+import { messageRandom } from "../../helpers/messageRandom";
 
 const Chat = () => {
   const [message, setMessage] = useState("");
-  const [chat, setChat] = useState([
-    {
-      id: Math.random(),
-      type: "cat",
-      message: "Meow, meow meow meow, meow meow?",
-    },
-  ]);
-
-  const messageRandom = () => {
-    let randomNum = (num) => Math.floor(Math.random() * num);
-    let symbols = [".", "!", "?"];
-    let meow = [];
-    for (let i = 0; i <= randomNum(10); i++) {
-      meow.push("meow");
-    }
-
-    return `${meow.join(" ")}${symbols[randomNum(2)]}`;
-  };
+  const [chat, setChat] = useState(defaultChatvalues);
 
   const changeMessage = (e) => {
     setMessage(e.target.value);
@@ -47,8 +32,8 @@ const Chat = () => {
           },
         ]);
       }, 500);
+      setMessage("");
     }
-    setMessage("");
   };
 
   return (

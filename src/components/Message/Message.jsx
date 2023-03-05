@@ -12,6 +12,7 @@ const Message = ({ type, message }) => {
           className={Styiles.avatar}
           alt={type}
         />
+        
         <div>
           <p
             className={`${Styiles.message} ${

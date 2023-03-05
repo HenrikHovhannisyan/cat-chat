@@ -13,6 +13,7 @@ const Send = ({value, change, send}) => {
         onKeyDown={change}
         placeholder="Write Message"
       />
+      
       <button className={Styles.button} onClick={() => send()}>
         <i className="fas fa-paper-plane"></i>
       </button>

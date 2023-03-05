@@ -1,0 +1,1 @@
+export const generateRandomNumber = (num) => Math.floor(Math.random() * (num + 1));
