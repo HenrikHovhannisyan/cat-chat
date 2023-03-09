@@ -1,4 +1,4 @@
-export default [
+export const defaultChatvalues = [
     {
       id: Math.random(),
       type: "cat",

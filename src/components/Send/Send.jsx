@@ -14,7 +14,7 @@ const Send = ({value, change, send}) => {
         placeholder="Write Message"
       />
       
-      <button className={Styles.button} onClick={() => send()}>
+      <button className={Styles.button} onClick={send}>
         <i className="fas fa-paper-plane"></i>
       </button>
     </div>

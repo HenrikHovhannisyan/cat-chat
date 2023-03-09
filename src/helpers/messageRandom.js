@@ -1,11 +1,11 @@
 import { generateRandomNumber } from "./generateRandomNumber";
-import { symbols } from "./symbols";
+import { SYMBOLS } from "../constants";
 
-export const messageRandom = () => {
+export default function messageRandom() {
     const meow = [];
     for (let i = 0; i <= generateRandomNumber(10); i++) {
       meow.push("meow");
     }
 
-    return `${meow.join(" ")}${symbols[generateRandomNumber(2)]}`;
+    return `${meow.join(" ")}${SYMBOLS[generateRandomNumber(2)]}`;
 };

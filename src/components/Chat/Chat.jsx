@@ -1,9 +1,9 @@
-import React, { memo, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import Message from "../Message/Message";
 import Send from "../Send/Send";
 import Styles from "./chat.module.css";
-import defaultChatvalues from "../../helpers/chatInfo";
-import { messageRandom } from "../../helpers/messageRandom";
+import {defaultChatvalues} from "../../helpers/defaultChatvalues";
+import messageRandom from "../../helpers/messageRandom";
 
 const Chat = () => {
   const [message, setMessage] = useState("");
@@ -22,7 +22,15 @@ const Chat = () => {
         ...prevState,
         { id: Math.random(), type: "user", message },
       ]);
-      setTimeout(() => {
+      setMessage("");
+    }
+  };
+
+  useEffect(() => {
+    let catMessage = null;
+
+    if (chat[chat.length - 1].type === "user") {
+      catMessage = setTimeout(() => {
         setChat((prevState) => [
           ...prevState,
           {
@@ -32,9 +40,10 @@ const Chat = () => {
           },
         ]);
       }, 500);
-      setMessage("");
     }
-  };
+    
+    return () => clearTimeout(catMessage);
+  }, [chat])
 
   return (
     <div className="container-fluid p-0">

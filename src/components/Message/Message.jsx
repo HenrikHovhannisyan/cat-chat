@@ -1,14 +1,16 @@
-import React, { memo } from "react";
+import React, { memo, useMemo } from "react";
 import Styiles from "./message.module.css";
 import Cat from "../../assets/cat.png";
 import User from "../../assets/user.png";
 
 const Message = ({ type, message }) => {
+const userType = useMemo(() => type === "cat", [type]);
+
   return (
-    <div className={`${type === "cat" ? Styiles.cat : ""} pt-3 pb-3`}>
+    <div className={`${userType ? Styiles.cat : ""} pt-3 pb-3`}>
       <div className={`${Styiles.message} container d-flex align-items-center`}>
         <img
-          src={type === "cat" ? Cat : User}
+          src={userType ? Cat : User}
           className={Styiles.avatar}
           alt={type}
         />
@@ -16,7 +18,7 @@ const Message = ({ type, message }) => {
         <div>
           <p
             className={`${Styiles.message} ${
-              type === "cat" ? Styiles.cat_message : ""
+              userType ? Styiles.cat_message : ""
             }`}
           >
             {message}
