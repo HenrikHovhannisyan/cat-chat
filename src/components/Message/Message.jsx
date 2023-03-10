@@ -4,7 +4,7 @@ import Cat from "../../assets/cat.png";
 import User from "../../assets/user.png";
 
 const Message = ({ type, message }) => {
-const userType = useMemo(() => type === "cat", [type]);
+  const userType = useMemo(() => type === "cat", [type]);
 
   return (
     <div className={`${userType ? Styiles.cat : ""} pt-3 pb-3`}>
@@ -14,7 +14,7 @@ const userType = useMemo(() => type === "cat", [type]);
           className={Styiles.avatar}
           alt={type}
         />
-        
+
         <div>
           <p
             className={`${Styiles.message} ${
