@@ -2,12 +2,12 @@ import React, { useCallback, useEffect, useState } from "react";
 import Message from "../Message/Message";
 import Send from "../Send/Send";
 import Styles from "./chat.module.css";
-import { defaultChatvalues } from "../../helpers/defaultChatvalues";
 import messageRandom from "../../helpers/messageRandom";
+import { DEFAULT_CHAT_VALUE } from "../../constants";
 
 const Chat = () => {
   const [message, setMessage] = useState("");
-  const [chat, setChat] = useState(defaultChatvalues);
+  const [chat, setChat] = useState(DEFAULT_CHAT_VALUE);
 
   const sendMessage = useCallback(() => {
     if (message) {
@@ -19,17 +19,19 @@ const Chat = () => {
     }
   }, [message]);
 
-  const changeMessage = useCallback((e) => {
-    setMessage(e.target.value);
-    if (e.key === "Enter") {
-      sendMessage();
-    }
-  }, [sendMessage]);
+  const changeMessage = useCallback(
+    (e) => {
+      setMessage(e.target.value);
+      if (e.key === "Enter") {
+        sendMessage();
+      }
+    },
+    [sendMessage]
+  );
 
   useEffect(() => {
-    let catMessage = null;
     if (chat[chat.length - 1].type === "user") {
-      catMessage = setTimeout(() => {
+      const catMessage = setTimeout(() => {
         setChat((prevState) => [
           ...prevState,
           {
@@ -39,9 +41,8 @@ const Chat = () => {
           },
         ]);
       }, 500);
+      return () => clearTimeout(catMessage);
     }
-
-    return () => clearTimeout(catMessage);
   }, [chat]);
 
   return (
