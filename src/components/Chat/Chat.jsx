@@ -1,55 +1,49 @@
-import React, { memo, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Message from "../Message/Message";
 import Send from "../Send/Send";
 import Styles from "./chat.module.css";
+import messageRandom from "../../helpers/messageRandom";
+import { DEFAULT_CHAT_VALUE } from "../../constants";
 
 const Chat = () => {
   const [message, setMessage] = useState("");
-  const [chat, setChat] = useState([
-    {
-      id: Math.random(),
-      type: "cat",
-      message: "Meow, meow meow meow, meow meow?",
-    },
-  ]);
+  const [chat, setChat] = useState(DEFAULT_CHAT_VALUE);
 
-  const messageRandom = () => {
-    let randomNum = (num) => Math.floor(Math.random() * num);
-    let symbols = [".", "!", "?"];
-    let meow = [];
-    for (let i = 0; i <= randomNum(10); i++) {
-      meow.push("meow");
-    }
-
-    return `${meow.join(" ")}${symbols[randomNum(2)]}`;
-  };
-
-  const changeMessage = (e) => {
-    setMessage(e.target.value);
-    if (e.key === "Enter") {
-      sendMessage();
-    }
-  };
-
-  const sendMessage = () => {
+  const sendMessage = useCallback(() => {
     if (message) {
       setChat((prevState) => [
         ...prevState,
         { id: Math.random(), type: "user", message },
       ]);
-      setTimeout(() => {
-        setChat((prevState) => [
-          ...prevState,
-          {
-            id: Math.random(),
-            type: "cat",
-            message: messageRandom(),
-          },
-        ]);
-      }, 500);
+      setMessage("");
     }
-    setMessage("");
-  };
+  }, [message]);
+
+  const changeMessage = useCallback(
+    (e) => {
+      setMessage(e.target.value);
+      if (e.key === "Enter") {
+        sendMessage();
+      }
+    },
+    [sendMessage]
+  );
+
+  useEffect(() => {
+    if (chat[chat.length - 1].type === "user") {
+      // const catMessage = setTimeout(() => {
+      setChat((prevState) => [
+        ...prevState,
+        {
+          id: Math.random(),
+          type: "cat",
+          message: messageRandom(),
+        },
+      ]);
+      // }, 500);
+      // return () => clearTimeout(catMessage);
+    }
+  }, [chat]);
 
   return (
     <div className="container-fluid p-0">
@@ -64,4 +58,4 @@ const Chat = () => {
   );
 };
 
-export default memo(Chat);
+export default Chat;
