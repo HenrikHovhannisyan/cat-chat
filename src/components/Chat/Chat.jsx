@@ -31,17 +31,17 @@ const Chat = () => {
 
   useEffect(() => {
     if (chat[chat.length - 1].type === "user") {
-      const catMessage = setTimeout(() => {
-        setChat((prevState) => [
-          ...prevState,
-          {
-            id: Math.random(),
-            type: "cat",
-            message: messageRandom(),
-          },
-        ]);
-      }, 500);
-      return () => clearTimeout(catMessage);
+      // const catMessage = setTimeout(() => {
+      setChat((prevState) => [
+        ...prevState,
+        {
+          id: Math.random(),
+          type: "cat",
+          message: messageRandom(),
+        },
+      ]);
+      // }, 500);
+      // return () => clearTimeout(catMessage);
     }
   }, [chat]);
 
